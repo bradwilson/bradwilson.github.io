@@ -1,0 +1,69 @@
+body {
+  font-family: Lato, sans-serif;
+  font-size: 18px;
+  background-color: #f6f4f0;
+  padding-top: 78px;
+}
+.navbar-brand {
+  height: 78px;
+}
+.navbar-brand img {
+  height: 48px;
+  width: 48px;
+}
+.navbar-text {
+  margin-top: 24px;
+}
+.left-nav {
+  position: relative;
+}
+.left-nav .sticky {
+  background-color: Yellow;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 95%;
+}
+.left-nav p {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.h1, h1 {
+  font-size: 45px;
+}
+.h2, h2 {
+  font-size: 37px;
+}
+.h3, h3 {
+  font-size: 30px;
+}
+.h4, h4 {
+  font-size: 22px;
+}
+.h5, h5 {
+  font-size: 18px;
+}
+.h6, h6 {
+  font-size: 15px;
+}
+.best-of-music h2 {
+  background-color: #e6e4e0;
+  margin-left: -10px;
+  margin-top: 40px;
+  padding: 5px 10px;
+}
+.best-of-music h3 {
+  border-top: solid 1px #c0c0e0;
+  padding-top: 5px;
+  margin-top: 30px;
+}
+.best-of-music h4 {
+  text-decoration: underline;
+  font-size: 18px;
+  font-style: italic;
+  font-weight: 700;
+}
+.best-of-music h4+p {
+  font-style: italic;
+  font-size: 15px;
+}
