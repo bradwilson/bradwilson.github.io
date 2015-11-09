@@ -13,6 +13,29 @@ body {
 .navbar-text {
   margin-top: 24px;
 }
+a.social {
+  padding-left: 5px;
+  color: #222;
+}
+a.social:hover {
+  color: #337ab7;
+}
+.boxy {
+  border: 1px solid #222;
+  border-top: 10px solid #222;
+  font-size: 24px;
+  margin-right: 2%;
+  width: 23%;
+  padding: 20px 0;
+  text-align: center;
+  vertical-align: middle;
+}
+.boxy .fa {
+  font-size: 120px;
+}
+.fa {
+  font-size: 25px;
+}
 .left-nav {
   position: relative;
 }
@@ -44,25 +67,28 @@ body {
 }
 .h6, h6 {
   font-size: 15px;
+  margin-top: 35px;
+  border-top: 3px double #d8d8d8;
+  padding-top: 8px;
 }
-.best-of-music h2 {
+.content-column h2 {
   background-color: #e6e4e0;
   margin-left: -10px;
   margin-top: 40px;
   padding: 5px 10px;
 }
-.best-of-music h3 {
+.content-column h3 {
   border-top: solid 1px #c0c0e0;
   padding-top: 5px;
   margin-top: 30px;
 }
-.best-of-music h4 {
+.content-column h4 {
   text-decoration: underline;
   font-size: 18px;
   font-style: italic;
   font-weight: 700;
 }
-.best-of-music h4+p {
+.content-column h4+p {
   font-style: italic;
   font-size: 15px;
 }
