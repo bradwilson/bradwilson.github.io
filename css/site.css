@@ -30,6 +30,9 @@ a.social:hover {
   text-align: center;
   vertical-align: middle;
 }
+.boxy:hover {
+  background-color: #e0e0f0;
+}
 .boxy .fa {
   font-size: 120px;
 }
