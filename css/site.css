@@ -75,6 +75,9 @@ a.social:hover {
   border-top: 3px double #d8d8d8;
   padding-top: 8px;
 }
+.table-nonfluid {
+   width: auto !important;
+}
 .content-column h2 {
   background-color: #e6e4e0;
   margin-left: -10px;
@@ -97,29 +100,34 @@ a.social:hover {
   font-size: 15px;
 }
 .example {
-  background-color: #eef;
-  border-radius: 0 0 5px 5px;
+  background-color: #fff;
+  border: solid 1px #ccc;
   box-shadow: 5px 5px 3px #888;
   padding: 0 10px 5px 10px;
-  margin-bottom: 10px;
+  margin: 20px;
 }
 .example:before {
-  background-color: #eef;
+  background-color: #ccc;
   content: "E X A M P L E";
   font-weight: bold;
   font-size: 120%;
   display: block;
   font-style: italic;
-  color: #333;
+  color: #000;
   padding: 2px 10px;
   margin: 0 -10px 5px -10px;
-  border-bottom: solid 2px #dde;
+}
+.indent {
+  margin-left: 20px;
 }
 .heart,
 .diamond {
-  color: #f33;
+  color: #f00;
+}
+.club,
+.spade {
+  color: #000;
 }
 .suit {
   padding: 0 5px 0 2px;
-  font-size: 125%;
 }
