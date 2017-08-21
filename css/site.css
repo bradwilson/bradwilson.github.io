@@ -1,3 +1,10 @@
+@font-face {
+  font-family: 'UbuntuMonoNerd';
+  src: url('fonts/ubuntu_mono_nerd_font_complete_mono_windows_compatible-webfont.woff2') format('woff2'),
+       url('fonts/ubuntu_mono_nerd_font_complete_mono_windows_compatible-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 body {
   font-family: "Segoe UI", Calibri, sans-serif;
   background-color: #f6f4f0;
@@ -44,6 +51,15 @@ a.social:hover {
 }
 .boxy .fa {
   font-size: 80px;
+}
+.boxy:hover {
+  background-color: #e0e0f0;
+}
+.boxy .fa {
+  font-size: 80px;
+}
+.boxy-wide {
+  width: 250px;
 }
 .fa {
   font-size: 25px;
@@ -112,6 +128,10 @@ a.social:hover {
 }
 .indent {
   margin-left: 20px;
+}
+.language-powershell {
+  font-family: UbuntuMonoNerd;
+  font-size: 16px;
 }
 .heart,
 .diamond {
