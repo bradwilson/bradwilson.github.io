@@ -15,6 +15,7 @@ title: Anatomy of a Prompt &raquo; Blog Posts &raquo; Brad Wilson
   <li><a href="#poshgit">posh-git</a></li>
   <li><a href="#prompt">prompt Function</a></li>
   <li><a href="#environment">Prompt Environment</a></li>
+  <li><a href="#downloads">Downloadable Files</a></li>
   <li><a href="#conclusion">Conclusion</a></li>
 </ul>
 
@@ -27,6 +28,10 @@ title: Anatomy of a Prompt &raquo; Blog Posts &raquo; Brad Wilson
   information here assumes you have general familiarity with customing your PowerShell
   environment (for example, editing your profile file). It also assumes you have some
   pre-requisites installed, like Git for Windows and Visual Studio.
+</p>
+<p>
+  You can copy/paste along as we go, but I have also provided downloadable versions at
+  the end of the blog post.
 </p>
 
 <h2 id="shell">Shell, Font, and Colors</h2>
@@ -41,11 +46,12 @@ title: Anatomy of a Prompt &raquo; Blog Posts &raquo; Brad Wilson
 <p>
   The most critical feature that I'm leveraging here is the ability of ConEmu to create a
   slightly compressed font display without needing an actual condensed font. Speaking of
-  fonts, I use symbols from PowerLine to get some of the special prompt displays. You
-  can download existing fixed pitch fonts with added symbols added from the
-  <a href="https://github.com/ryanoasis/nerd-fonts/">Nerd Fonts</a> project; there are
-  dozens to choose from. My prompt is using
-  <a href="https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf?raw=true">Ubuntu Mono</a>:
+  fonts, I use a font from the awesome <a href="https://github.com/ryanoasis/nerd-fonts/">Nerd
+  Fonts</a> project to provide several of the custom symbols in my prompt. It joins together
+  icons from several projects (including Powerline, Font Awesome, and Octicons), and creates
+  pre-merged versions of their font based on several free, fixed pitch fonts (my prompt is using
+  <a href="https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf?raw=true">Ubuntu
+  Mono</a>).
 </p>
 <p><img src="/images/prompt/font.png" alt="ConEmu Font Settings" /></p>
 <p>
@@ -409,8 +415,18 @@ $global:PromptEnvironment = "  2017 "
 </p>
 <p>
   I have several of these little scripts to set up different environments. You can use this Visual Studio
-  2017 script as a starting point to developing your own custom environment scripts.
+  2017 script as a starting point to developing your own custom environment scripts. In the downloads below,
+  I have provided versions for Visual Studio 2015, 2017, and Preview.
 </p>
+
+<h2 id="downloads">Downloadable Files</h2>
+
+<ul>
+  <li><a href="https://gist.githubusercontent.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/f75596bd41d68fc8347a68287fc717f14df02d8a/profile.ps1">profile.ps1</a></li>
+  <li><a href="https://gist.github.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/f75596bd41d68fc8347a68287fc717f14df02d8a/vs2015.ps1">vs2015.ps1</a></li>
+  <li><a href="https://gist.github.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/f75596bd41d68fc8347a68287fc717f14df02d8a/vs2017.ps1">vs2017.ps1</a></li>
+  <li><a href="https://gist.github.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/f75596bd41d68fc8347a68287fc717f14df02d8a/vspreview.ps1">vspreview.ps1</a></li>
+</ul>
 
 <h2 id="conclusion">Conclusion</h2>
 
