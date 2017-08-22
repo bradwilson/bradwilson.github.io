@@ -22,7 +22,7 @@ title: Anatomy of a Prompt &raquo; Blog Posts &raquo; Brad Wilson
 <h2 id="intro">Introduction</h2>
 
 <p>Whenever I post a screen shot of my PowerShell prompt, people ask me how it's put together:</p>
-<p><img src="/images/prompt/conemu.png" alt="ConEmu ScreenShot" /></p>
+<p><img class="border" src="/images/prompt/conemu.png" alt="ConEmu ScreenShot" /></p>
 <p>
   There's a lot going on in this screenshot, so I'm going to put together the pieces. The
   information here assumes you have general familiarity with customing your PowerShell
@@ -33,6 +33,13 @@ title: Anatomy of a Prompt &raquo; Blog Posts &raquo; Brad Wilson
   You can copy/paste along as we go, but I have also provided downloadable versions at
   the end of the blog post.
 </p>
+<p><em>
+  <strong>Important Note:</strong> When saving the PowerShell files, make sure they are saved as
+  "UTF-8 with Encoding". This will ensure that PowerShell treats your file as UTF-8 and does not
+  accidentally treat it as ANSI. Here is an example using my editor of choice,
+  <a href="http://www.flos-freeware.ch/notepad2.html">Notepad2</a>:
+</em></p>
+<p><img class="border" src="/images/prompt/encoding.png" alt="Encoding in Notepad2" /></p>
 
 <h2 id="shell">Shell, Font, and Colors</h2>
 
@@ -53,7 +60,7 @@ title: Anatomy of a Prompt &raquo; Blog Posts &raquo; Brad Wilson
   <a href="https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf?raw=true">Ubuntu
   Mono</a>).
 </p>
-<p><img src="/images/prompt/font.png" alt="ConEmu Font Settings" /></p>
+<p><img class="border" src="/images/prompt/font.png" alt="ConEmu Font Settings" /></p>
 <p>
   I get the slightly condensed look with the "Width" setting (width of 9 against font size
   of 20).
@@ -64,7 +71,7 @@ title: Anatomy of a Prompt &raquo; Blog Posts &raquo; Brad Wilson
   colors; if you choose to stick with the default color values, you may wish to adjust some
   of my color choices for better legibility.
 </p>
-<p><img src="/images/prompt/colors.png" alt="ConEmu Colors" /></p>
+<p><img class="border" src="/images/prompt/colors.png" alt="ConEmu Colors" /></p>
 <p><em>
   <strong>Important note:</strong> Because there are use of Unicode characters in many of the
   samples, please make sure your text editor is capable of editing files in UTF-8 mode. If you
@@ -82,7 +89,7 @@ title: Anatomy of a Prompt &raquo; Blog Posts &raquo; Brad Wilson
   of flexibility when formatting the prompt output. Here is what it looks like by
   default:
 </p>
-<p><img src="/images/prompt/default-poshgit.png" alt="Default posh-git Prompt" /></p>
+<p><img class="border" src="/images/prompt/default-poshgit.png" alt="Default posh-git Prompt" /></p>
 <p>
   You configure the prompt by overriding the default values in a configuration object
   that posh-git sets. Here are the overrides which convert that default prompt into
@@ -140,13 +147,13 @@ $GitPromptSettings.ShowStatusWhenZero = $false
   posh-git added to your PowerShell profile. Once you restart your shell, you should see your new
   customizations in place (don't worry about the path; we'll be removing that later on):
 </p>
-<p><img src="/images/prompt/override-poshgit.png" alt="post-git Customized Prompt" /></p>
+<p><img class="border" src="/images/prompt/override-poshgit.png" alt="post-git Customized Prompt" /></p>
 <p>
   If you want to customize the symbols used in the prompt, the easiest way to find them is by
   using the Character Map application built into Windows. Just select the Nerd Font you're using
   while browsing characters, and you can copy them directly from this app into your profile:
 </p>
-<p><img src="/images/prompt/charmap.png" alt="Windows Character Map application" /></p>
+<p><img class="border" src="/images/prompt/charmap.png" alt="Windows Character Map application" /></p>
 
 <h2 id="prompt">prompt Function</h2>
 
@@ -306,7 +313,7 @@ if ((get-location -stack).Count -gt 0) {
 {% endhighlight %}
 
 <p>Here is a quick screenshot of how this works:</p>
-<p><img src="/images/prompt/stack.png" alt="Command Prompt Stack Depth" /></p>
+<p><img class="border" src="/images/prompt/stack.png" alt="Command Prompt Stack Depth" /></p>
 
 <h3>Returning a string</h3>
 

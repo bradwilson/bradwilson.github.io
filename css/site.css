@@ -39,6 +39,11 @@ a.social {
 a.social:hover {
   color: #337ab7;
 }
+.border {
+  display: inline-block;
+  margin-left: 15px;
+  box-shadow: 3px 3px 20px #666;
+}
 .boxy {
   border: 1px solid #222;
   border-top: 10px solid #222;
