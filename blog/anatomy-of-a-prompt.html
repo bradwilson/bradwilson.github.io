@@ -5,7 +5,7 @@ title: Anatomy of a Prompt &raquo; Blog Posts &raquo; Brad Wilson
 
 <h1>Anatomy of a Prompt</h1>
 <div>First posted: 20 August 2017</div>
-<div>Last updated: 22 August 2017</div>
+<div>Last updated: 30 August 2017</div>
 
 <h2>Table of Contents</h2>
 
@@ -401,7 +401,7 @@ if ($noWeb -eq $false) {
   $path = join-path (join-path (join-path $basePath $edition) "Web") "External"
 
   if (test-path $path) {
-    append-path $path
+    $env:path = $env:path + ";" + $path
   } else {
     write-warning "Path $path not found; specify -noWeb to skip searching for web tools"
   }
@@ -429,10 +429,10 @@ $global:PromptEnvironment = "  2017 "
 <h2 id="downloads">Downloadable Files</h2>
 
 <ul>
-  <li><a href="https://gist.githubusercontent.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/f75596bd41d68fc8347a68287fc717f14df02d8a/profile.ps1">profile.ps1</a></li>
-  <li><a href="https://gist.github.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/f75596bd41d68fc8347a68287fc717f14df02d8a/vs2015.ps1">vs2015.ps1</a></li>
-  <li><a href="https://gist.github.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/f75596bd41d68fc8347a68287fc717f14df02d8a/vs2017.ps1">vs2017.ps1</a></li>
-  <li><a href="https://gist.github.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/f75596bd41d68fc8347a68287fc717f14df02d8a/vspreview.ps1">vspreview.ps1</a></li>
+  <li><a href="https://gist.githubusercontent.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/bc72665599df0d559bf1a4119e0dc9d2d28acaa5/profile.ps1">profile.ps1</a></li>
+  <li><a href="https://gist.github.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/bc72665599df0d559bf1a4119e0dc9d2d28acaa5/vs2015.ps1">vs2015.ps1</a></li>
+  <li><a href="https://gist.github.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/bc72665599df0d559bf1a4119e0dc9d2d28acaa5/vs2017.ps1">vs2017.ps1</a></li>
+  <li><a href="https://gist.github.com/bradwilson/0cf1818bc9dc6c203c68d44d2f96c102/raw/bc72665599df0d559bf1a4119e0dc9d2d28acaa5/vspreview.ps1">vspreview.ps1</a></li>
 </ul>
 
 <h2 id="conclusion">Conclusion</h2>
