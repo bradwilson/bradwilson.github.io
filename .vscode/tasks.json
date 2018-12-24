@@ -1,0 +1,21 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Web Server",
+            "command": "bundle",
+            "args": [
+                "exec",
+                "jekyll",
+                "serve",
+                "-w"
+            ],
+            "presentation": {
+                "echo": false,
+                "focus": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
