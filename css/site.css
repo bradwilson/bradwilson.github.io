@@ -50,6 +50,9 @@ a.social:hover {
   margin-left: 15px;
   box-shadow: 3px 3px 20px #666;
 }
+.prompt-piece {
+  margin: -5px 0 0 20px;
+}
 .boxy {
   border: 1px solid #222;
   border-top: 10px solid #222;
@@ -144,7 +147,8 @@ a.social:hover {
 .indent {
   margin-left: 20px;
 }
-.language-powershell {
+.language-powershell,
+body .gist .blob-code-inner {
   font-family: UbuntuMonoNerd;
   font-size: 16px;
 }

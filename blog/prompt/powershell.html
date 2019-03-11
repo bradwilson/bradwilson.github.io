@@ -1,0 +1,313 @@
+---
+layout: default
+title: Anatomy of a Prompt (PowerShell) &raquo; Blog Posts &raquo; Brad Wilson
+redirect_from:
+  - /blog/anatomy-of-a-prompt
+---
+
+<h1>Anatomy of a Prompt (PowerShell)</h1>
+<div>First posted: 20 August 2017</div>
+<div>Last updated: 10 March 2019</div>
+
+<h2>Table of Contents</h2>
+
+<ul>
+    <li><a href="#history">History</a></li>
+    <li><a href="#intro">Introduction</a></li>
+    <li><a href="#fontscolors">Fonts and Colors</a></li>
+    <li><a href="#poshgit">posh-git</a></li>
+    <li><a href="#prompt">prompt Function</a></li>
+    <li><a href="#environment">Prompt Environment</a></li>
+    <li><a href="#downloads">Downloadable Files</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+</ul>
+
+<h2 id="history">History</h2>
+
+<ul>
+    <li>
+        <strong>10 March 2019</strong>: Significantly re-written to include support for kubectl context,
+        current Azure subscription, support for current version of posh-git, and support for
+        PowerShell core (yes, this all works on Linux and macOS now!).
+    </li>
+    <li>
+        <strong>20 August 2017</strong>: Initial revision.
+    </li>
+</ul>
+
+<h2 id="intro">Introduction</h2>
+
+<p>Whenever I post a screen shot of my PowerShell prompt, people ask me how it's put together:</p>
+<p><img class="border" src="/images/prompt/powershell/conemu.png" alt="ConEmu ScreenShot" width="624" /></p>
+<p>
+    There's a lot going on in this screenshot, so I'm going to put together the pieces. The
+    information here assumes you have general familiarity with customizing your PowerShell
+    environment (for example, editing your profile file). It also assumes you have some
+    pre-requisites installed, like Git for Windows and Visual Studio.
+</p>
+<p>
+    You can copy/paste along as we go, but I have also provided downloadable versions at
+    the end of the blog post.
+</p>
+<p><em>
+    <strong>Important Note:</strong> When saving the PowerShell files, make sure they are saved as
+    "UTF-8 with Signature". This will ensure that PowerShell treats your file as UTF-8 and does not
+    accidentally treat it as ANSI. Here is an example using my editor of choice,
+    <a href="http://www.flos-freeware.ch/notepad2.html">Notepad2</a>:
+</em></p>
+<p><img class="border" src="/images/prompt/powershell/encoding.png" alt="Encoding in Notepad2" /></p>
+
+<h2 id="fontscolors">Fonts and Colors</h2>
+<p>
+    On Windows, I use a console program called <a href="https://conemu.github.io/">ConEmu</a>. and I've
+    chosen it because its configuration allows me to get exactly what I want, in a portable executable.
+    (I keep most of my utilities like this in the cloud, so that I can just sync them down to a new
+    machine with no installation.)
+</p>
+<p>
+    The most critical feature that I'm leveraging here is the ability of ConEmu to create a
+    slightly compressed font display without needing an actual condensed font. Speaking of
+    fonts, I use a font from the awesome <a href="https://github.com/ryanoasis/nerd-fonts/">Nerd Fonts</a>
+    project to provide several of the custom symbols in my prompt. It joins together
+    icons from several projects (including Powerline, Font Awesome, and Octicons), and creates
+    pre-merged versions of their font based on several free, fixed pitch fonts (my prompt is using
+    <a href="https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf?raw=true">Ubuntu Mono</a>).
+</p>
+<p><img class="border" src="/images/prompt/powershell/font.png" alt="ConEmu Font Settings" /></p>
+<p>
+    I get the slightly condensed look with the "Width" setting (width of 9 against font size
+    of 20).
+</p>
+<p>
+    Lastly, I use a custom color set (based heavily on the Ubuntu default terminal colors).
+    The colors I've chosen for many of the prompt elements are based on the mix of these custom
+    colors; if you choose to stick with the default color values, you may wish to adjust some
+    of my color choices for better legibility.
+</p>
+<p><img class="border" src="/images/prompt/powershell/colors.png" alt="ConEmu Colors" /></p>
+<p><em>
+    <strong>Important note:</strong> Because there are use of Unicode characters in many of the
+    samples, please make sure your text editor is capable of editing files in UTF-8 mode. If you
+    see <code>?</code> characters where you expect to see custom symbols, make sure that your
+    file is in UTF-8 mode, and that your text editor is using your custom Nerd Font.
+</em></p>
+
+<h2 id="poshgit">posh-git</h2>
+
+<p>
+    The blue portion of the prompt is Git project information, powered by
+    <a href="https://github.com/dahlbyk/posh-git">posh-git</a>. This is a PowerShell plugin
+    that supports printing information about the Git repository referenced by the current
+    directory. The great thing about posh-git is that it comes with a tremendous amount
+    of flexibility when formatting the prompt output. Here is what it looks like by
+    default:
+</p>
+<p><img class="border" src="/images/prompt/powershell/default-poshgit.png" alt="Default posh-git Prompt" /></p>
+<p>
+    You configure the prompt by overriding the default values in a configuration object
+    that posh-git sets. Here are the overrides which convert that default prompt into
+    the blue prompt you've seen above:
+</p>
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="3-55"></code>
+
+<p>
+    To use these overrides, place these lines after the <code>Import-Module</code> statement that
+    posh-git added to your PowerShell profile. Once you restart your shell, you should see your new
+    customizations in place (don't worry about the path; we'll be re-styling that later on):
+</p>
+<p><img class="border" src="/images/prompt/powershell/override-poshgit.png" alt="post-git Customized Prompt" /></p>
+<p>
+    If you want to customize the symbols used in the prompt, the easiest way to find them is by
+    using the Character Map application built into Windows. Just select the Nerd Font you're using
+    while browsing characters, and you can copy them directly from this app into your profile:
+</p>
+<p><img class="border" src="/images/prompt/powershell/charmap.png" alt="Windows Character Map application" /></p>
+
+<h2 id="prompt">prompt Function</h2>
+
+<p>
+    When PowerShell wants to display your prompt, it executes the command <code>prompt</code>. By default, this
+    command is provided by a "PowerShell function". Adding this to your Profile will override the default
+    prompt with our custom prompt (I'll break down each meaningful section afterward):
+</p>
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="59,166"></code>
+
+<p>Let's break this down into the individual parts of the prompt.</p>
+
+<h3>
+    Showing errors
+    <img class="border prompt-piece" src="/images/prompt/powershell/piece-error.png" alt="Error display" width="45" />
+</h3>
+
+<p>
+    The first section of the prompt (red background) is where we optionally show errors that
+    have occurred:
+</p>
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="66-78"></code>
+
+<p>
+    There are two categories of errors that might happen in PowerShell: internal errors (for example,
+    you try to run a command that doesn't exit), and external errors (when you run an executable, and
+    the return code is something other than zero). We have separate code for each kind. We reset the
+    <code>$Error</code> array and the <code>$LASTEXITCODE</code> values here when we're done.
+</p>
+
+<h3>
+    Showing custom prompt environments
+    <img class="border prompt-piece" src="/images/prompt/powershell/piece-environment.png" alt="Custom prompt environment" width="70" />
+</h3>
+
+<p>Next you'll see us printing out custom prompt environments:</p>
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="80-84"></code>
+
+<p>
+    This is used by things like the <code>vs2017.ps1</code> script that we will discuss later. The
+    assumption is that any text you place into <code>$PromptEnvironment</code> will be shown here
+    as-is (in White on DarkMagenta).
+</p>
+
+<h3>
+    Showing the Kubernetes (kubectl) current context
+    <img class="border prompt-piece" src="/images/prompt/powershell/piece-kubectl.png" alt="Kubernetes (kubectl) context" width="66" />
+</h3>
+
+<p>The gray box in my prompt shows your current kubectl context:</p>
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="86-97"></code>
+
+<h3>
+    Showing Azure CLI current subscription
+    <img class="border prompt-piece" src="/images/prompt/powershell/piece-az.png" alt="Azure CLI current subscription" width="167" />
+</h3>
+
+<p>
+    I find it useful to know which Azure subscription is my current subscription when running
+    commands via <code>az</code>, so I print out the name of the subscription in my prompt:
+</p>
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="99-111"></code>
+
+<p>
+    One thing to note here is that I used <code>sed</code> for the string parsing, mostly because
+    I wrote this parser for Bash on Linux before I wrote it for PowerShell. There is no built-in
+    way to parse INI files (in either shell), so sed ends up filling this role. You'll need a
+    version of Gnu sed somewhere on your path; I pull mine from the Git for Windows installation
+    (by putting <code>...\usr\bin</code> folder on my PATH).
+</p>
+
+<h3>
+    Showing Git information
+    <img class="border prompt-piece" src="/images/prompt/powershell/piece-git.png" alt="Git information" width="74" />
+</h3>
+
+<p>
+    As we previously saw, posh-git does all the heavy lifting for figuring out the current Git
+    status: it shows the current branch name as well as the state of the filesystem (modified
+    files, un-tracked files, etc.). All we need to do is print the info:
+</p>
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="113-118"></code>
+
+<h3>
+    Showing current path
+    <img class="border prompt-piece" src="/images/prompt/powershell/piece-path.png" alt="Current path" width="171" />
+</h3>
+
+<p>The last element of the prompt is the current directory:</p>
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="120-127"></code>
+
+<p>
+    The location is normalized to replace your home folder with
+</p>
+
+<h3>Printing directory stack depth</h3>
+
+<p>
+    At the end of the prompt, we print one cyan <code>+</code> symbol for every level deep
+    you are in the directory stack (that is, for every un-popped directory you pushed using
+    <code>Push-Location</code>, aka <code>pushd</code>):
+</p>
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="132-136"></code>
+
+<h3>Conditional prompt text &amp; color</h3>
+
+<p>
+    I like to know when I'm running as admin or not, and whether my current window is using PowerShell or
+    PowerShell Core.
+</p>
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="141-162"></code>
+
+<p>
+    There is a little bit of Windows vs. Unix-ism here to determine whether you're an admin. On Windows,
+    we ask the current user identity whether it's in the <code>Administrators</code> group or not; on
+    Unix-like environments, we test the user ID against <code>0</code> (meaning, you're <code>root</code>).
+    Then when we print the prompt, we use green for (safe) non-admin users, and red for (unsafe) administrators.
+</p>
+
+<p>
+    The prompt text itself is either <code>PS&gt;</code> for PowerShell, or <code>pwsh&gt;</code> for
+    PowerShell Core (regardless of the OS that you're running on).
+</p>
+
+<h2 id="environment">Prompt Environment</h2>
+
+<p>
+    The final piece of the puzzle is printing the prompt environment. I have several commands which
+    place the shell into a special mode to be used for specific environments. For example, I have
+    a command called <code>vs2017</code> which adds Visual Studio environment variables just as
+    though you'd run the Visual Studio Command Prompt, and then adds that information to the
+    printed prompt environment.
+</p>
+
+<p>I use a single script which can be used for any version of Visual Studio 2017 (or later):</p>
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs.ps1"></code>
+
+And then I use a few simpler commands to invoke it:
+
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs2017.ps1"></code>
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs2019.ps1"></code>
+<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vspreview.ps1"></code>
+
+<p>
+    <code>vs.ps1</code> is a little complex because Visual Studio 2017+ now allows you to install multiple editions
+    side by side. It looks to see which edition you have installed and uses the <code>VsDevCmd.bat</code>
+    to get the updated environment variables. If you have multiple editions installed, you can use
+    the <code>-edition</code> switch to specify which environment you want.
+</p>
+<p>
+    The final line of the script sets the global <code>PromptEnvironment</code> variable, which we use
+    in our custom prompt function (as shown previously).
+</p>
+
+<h2 id="downloads">Downloadable Files</h2>
+
+<p>
+    You can download <code>profile.ps1</code> and <code>vs.ps1</code> (and friends) from my
+    <a href="https://gist.github.com/bradwilson/d965fa17fd3b3eee168270122e0f7da4#file-vs2017-ps1">GitHub gist</a>.
+</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>
+    I hope this quick tour through my custom prompt inspires you to make customizations of your
+    own, based on your needs. Being able to carefully craft your prompt to be succinct and
+    quickly glanceable can be very handy when spending significant time in your command window
+    of choice.
+</p>
+
+<p>
+    Here is the prompt from one of my <a href="https://system76.com/pop">Pop!_OS 18.10</a> Linux machines,
+    running in PowerShell Core:
+</p>
+
+<p><img class="border" src="/images/prompt/powershell/pwsh-linux.png" alt="PowerShell Core on Linux" width="624" /></p>
+
+<p>Happy hacking!</p>
