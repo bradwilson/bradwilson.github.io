@@ -152,6 +152,9 @@ body .gist .blob-code-inner {
   font-family: UbuntuMonoNerd;
   font-size: 16px;
 }
+code.transparent {
+  background-color: transparent;
+}
 .heart,
 .diamond {
   color: #f00;

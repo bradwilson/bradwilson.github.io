@@ -109,7 +109,7 @@ redirect_from:
     the blue prompt you've seen above:
 </p>
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="3-55"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="3-55"></code>
 
 <p>
     To use these overrides, place these lines after the <code>Import-Module</code> statement that
@@ -132,7 +132,7 @@ redirect_from:
     prompt with our custom prompt (I'll break down each meaningful section afterward):
 </p>
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="59,166"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="59,166"></code>
 
 <p>Let's break this down into the individual parts of the prompt.</p>
 
@@ -146,7 +146,7 @@ redirect_from:
     have occurred:
 </p>
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="66-78"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="66-78"></code>
 
 <p>
     There are two categories of errors that might happen in PowerShell: internal errors (for example,
@@ -162,7 +162,7 @@ redirect_from:
 
 <p>Next you'll see us printing out custom prompt environments:</p>
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="80-84"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="80-84"></code>
 
 <p>
     This is used by things like the <code>vs2017.ps1</code> script that we will discuss later. The
@@ -177,7 +177,7 @@ redirect_from:
 
 <p>The gray box in my prompt shows your current kubectl context:</p>
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="86-97"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="86-97"></code>
 
 <h3>
     Showing Azure CLI current subscription
@@ -189,7 +189,7 @@ redirect_from:
     commands via <code>az</code>, so I print out the name of the subscription in my prompt:
 </p>
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="99-111"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="99-111"></code>
 
 <p>
     One thing to note here is that I used <code>sed</code> for the string parsing, mostly because
@@ -210,7 +210,7 @@ redirect_from:
     files, un-tracked files, etc.). All we need to do is print the info:
 </p>
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="113-118"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="113-118"></code>
 
 <h3>
     Showing current path
@@ -219,7 +219,7 @@ redirect_from:
 
 <p>The last element of the prompt is the current directory:</p>
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="120-127"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="120-127"></code>
 
 <p>
     The location is normalized to replace your home folder with
@@ -233,7 +233,7 @@ redirect_from:
     <code>Push-Location</code>, aka <code>pushd</code>):
 </p>
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="132-136"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="132-136"></code>
 
 <h3>Conditional prompt text &amp; color</h3>
 
@@ -242,7 +242,7 @@ redirect_from:
     PowerShell Core.
 </p>
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="141-162"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="141-162"></code>
 
 <p>
     There is a little bit of Windows vs. Unix-ism here to determine whether you're an admin. On Windows,
@@ -268,13 +268,13 @@ redirect_from:
 
 <p>I use a single script which can be used for any version of Visual Studio 2017 (or later):</p>
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs.ps1"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs.ps1"></code>
 
 And then I use a few simpler commands to invoke it:
 
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs2017.ps1"></code>
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs2019.ps1"></code>
-<code data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vspreview.ps1"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs2017.ps1"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs2019.ps1"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vspreview.ps1"></code>
 
 <p>
     <code>vs.ps1</code> is a little complex because Visual Studio 2017+ now allows you to install multiple editions
