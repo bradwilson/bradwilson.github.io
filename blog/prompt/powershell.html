@@ -7,7 +7,7 @@ redirect_from:
 
 <h1>Anatomy of a Prompt (PowerShell)</h1>
 <div>First posted: 20 August 2017</div>
-<div>Last updated: 10 March 2019</div>
+<div>Last updated: 25 November 2019</div>
 
 <h2>Table of Contents</h2>
 
@@ -15,6 +15,10 @@ redirect_from:
     <li><a href="#history">History</a></li>
     <li><a href="#intro">Introduction</a></li>
     <li><a href="#fontscolors">Fonts and Colors</a></li>
+    <ul>
+        <li><a href="#conemu">ConEmu</a></li>
+        <li><a href="#windowsterminal">Windows Terminal</a></li>
+    </ul>
     <li><a href="#poshgit">posh-git</a></li>
     <li><a href="#prompt">prompt Function</a></li>
     <li><a href="#environment">Prompt Environment</a></li>
@@ -58,9 +62,17 @@ redirect_from:
 <p><img class="border" src="/images/prompt/powershell/encoding.png" alt="Encoding in Notepad2" /></p>
 
 <h2 id="fontscolors">Fonts and Colors</h2>
+
 <p>
-    On Windows, I use a console program called <a href="https://conemu.github.io/">ConEmu</a>. and I've
-    chosen it because its configuration allows me to get exactly what I want, in a portable executable.
+    I currently use a terminal application called <a href="https://conemu.github.io/">ConEmu</a>, but
+    the <a href="https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701">Windows Terminal</a>
+    application (as of this writing, in preview) is another alternative.
+</p>
+
+<h3 id="conemu">ConEmu</h3>
+
+<p>
+    I use ConEmu because its configuration allows me to get exactly what I want, in a portable executable.
     (I keep most of my utilities like this in the cloud, so that I can just sync them down to a new
     machine with no installation.)
 </p>
@@ -91,6 +103,15 @@ redirect_from:
     see <code>?</code> characters where you expect to see custom symbols, make sure that your
     file is in UTF-8 mode, and that your text editor is using your custom Nerd Font.
 </em></p>
+
+<h3 id="windowsterminal">Windows Terminal</h3>
+
+<p>
+    The Windows Terminal application uses a configuration file. Here is my theme, and an example
+    which shows how to apply it:
+</p>
+
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="windows-terminal-settings.json"></code>
 
 <h2 id="poshgit">posh-git</h2>
 
