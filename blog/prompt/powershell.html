@@ -15,10 +15,6 @@ redirect_from:
     <li><a href="#history">History</a></li>
     <li><a href="#intro">Introduction</a></li>
     <li><a href="#fontscolors">Fonts and Colors</a></li>
-    <ul>
-        <li><a href="#conemu">ConEmu</a></li>
-        <li><a href="#windowsterminal">Windows Terminal</a></li>
-    </ul>
     <li><a href="#poshgit">posh-git</a></li>
     <li><a href="#prompt">prompt Function</a></li>
     <li><a href="#environment">Prompt Environment</a></li>
@@ -29,6 +25,10 @@ redirect_from:
 <h2 id="history">History</h2>
 
 <ul>
+    <li>
+        <strong>04 December 2019</strong>: Replace ConEmu with Windows Terminal, and update
+        prompt/posh-git code to use ANSI codes to better support dark & light terminals.
+    </li>
     <li>
         <strong>10 March 2019</strong>: Significantly re-written to include support for kubectl context,
         current Azure subscription, support for current version of posh-git, and support for
@@ -41,10 +41,15 @@ redirect_from:
 
 <h2 id="intro">Introduction</h2>
 
-<p>Whenever I post a screen shot of my PowerShell prompt, people ask me how it's put together:</p>
-<p><img class="border" src="/images/prompt/powershell/conemu.png" alt="ConEmu ScreenShot" width="624" /></p>
 <p>
-    There's a lot going on in this screenshot, so I'm going to put together the pieces. The
+    Over the years, I've customized my prompt to maximize the information available to me while
+    doing software development. Today it looks like this:
+</p>
+<p><img class="border" src="/images/prompt/powershell/terminal-dark.png" alt="Windows Terminal (dark)" /></p>
+<p>I also have a light variant:</p>
+<p><img class="border" src="/images/prompt/powershell/terminal-light.png" alt="Windows Terminal (dark)" /></p>
+<p>
+    There's a lot going on in the screenshots, so I'm going to put together the pieces. The
     information here assumes you have general familiarity with customizing your PowerShell
     environment (for example, editing your profile file). It also assumes you have some
     pre-requisites installed, like Git for Windows and Visual Studio.
@@ -64,54 +69,22 @@ redirect_from:
 <h2 id="fontscolors">Fonts and Colors</h2>
 
 <p>
-    I currently use a terminal application called <a href="https://conemu.github.io/">ConEmu</a>, but
-    the <a href="https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701">Windows Terminal</a>
-    application (as of this writing, in preview) is another alternative.
+    In the original version of this blog post, I described a terminal program I used to use called
+    ConEmu. I've since switched to <a href="https://www.microsoft.com/en-us/p/windows-terminal-preview/9n0dx20hk701">Windows Terminal</a>
+    as it provides better compatibility with Windows Subsystem for Linux v2.
 </p>
 
-<h3 id="conemu">ConEmu</h3>
-
 <p>
-    I use ConEmu because its configuration allows me to get exactly what I want, in a portable executable.
-    (I keep most of my utilities like this in the cloud, so that I can just sync them down to a new
-    machine with no installation.)
-</p>
-<p>
-    The most critical feature that I'm leveraging here is the ability of ConEmu to create a
-    slightly compressed font display without needing an actual condensed font. Speaking of
-    fonts, I use a font from the awesome <a href="https://github.com/ryanoasis/nerd-fonts/">Nerd Fonts</a>
-    project to provide several of the custom symbols in my prompt. It joins together
-    icons from several projects (including Powerline, Font Awesome, and Octicons), and creates
-    pre-merged versions of their font based on several free, fixed pitch fonts (my prompt is using
-    <a href="https://github.com/ryanoasis/nerd-fonts/blob/master/patched-fonts/UbuntuMono/Regular/complete/Ubuntu%20Mono%20Nerd%20Font%20Complete%20Mono%20Windows%20Compatible.ttf?raw=true">Ubuntu Mono</a>).
-</p>
-<p><img class="border" src="/images/prompt/powershell/font.png" alt="ConEmu Font Settings" /></p>
-<p>
-    I get the slightly condensed look with the "Width" setting (width of 9 against font size
-    of 20).
-</p>
-<p>
-    Lastly, I use a custom color set (based heavily on the Ubuntu default terminal colors).
-    The colors I've chosen for many of the prompt elements are based on the mix of these custom
-    colors; if you choose to stick with the default color values, you may wish to adjust some
-    of my color choices for better legibility.
-</p>
-<p><img class="border" src="/images/prompt/powershell/colors.png" alt="ConEmu Colors" /></p>
-<p><em>
-    <strong>Important note:</strong> Because there are use of Unicode characters in many of the
-    samples, please make sure your text editor is capable of editing files in UTF-8 mode. If you
-    see <code>?</code> characters where you expect to see custom symbols, make sure that your
-    file is in UTF-8 mode, and that your text editor is using your custom Nerd Font.
-</em></p>
-
-<h3 id="windowsterminal">Windows Terminal</h3>
-
-<p>
-    The Windows Terminal application uses a configuration file. Here is my theme, and an example
-    which shows how to apply it:
+    The Windows Terminal application uses a configuration file. Hit "ctrl comma", and it will launch
+    a text editor for you to edit the configuration file. This is the dark and light theme:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="windows-terminal-settings.json"></code>
+<code class="transparent" data-gist-id="3b81a192a63056e310e453bc7f4c063d" data-gist-file="profiles.json" data-gist-line="57-105"></code>
+
+<p>
+    The full files (including the Ubuntu icon file that I use) are available here:
+    <a href="https://gist.github.com/bradwilson/3b81a192a63056e310e453bc7f4c063d">https://gist.github.com/bradwilson/3b81a192a63056e310e453bc7f4c063d</a>.
+</p>
 
 <h2 id="poshgit">posh-git</h2>
 
@@ -130,7 +103,7 @@ redirect_from:
     the blue prompt you've seen above:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="3-55"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="3-62"></code>
 
 <p>
     To use these overrides, place these lines after the <code>Import-Module</code> statement that
@@ -153,7 +126,7 @@ redirect_from:
     prompt with our custom prompt (I'll break down each meaningful section afterward):
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="59,166"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="151,254"></code>
 
 <p>Let's break this down into the individual parts of the prompt.</p>
 
@@ -167,7 +140,7 @@ redirect_from:
     have occurred:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="66-78"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="158-168"></code>
 
 <p>
     There are two categories of errors that might happen in PowerShell: internal errors (for example,
@@ -183,7 +156,7 @@ redirect_from:
 
 <p>Next you'll see us printing out custom prompt environments:</p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="80-84"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="170-173"></code>
 
 <p>
     This is used by things like the <code>vs2017.ps1</code> script that we will discuss later. The
@@ -198,7 +171,7 @@ redirect_from:
 
 <p>The gray box in my prompt shows your current kubectl context:</p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="86-97"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="175-184"></code>
 
 <h3>
     Showing Azure CLI current subscription
@@ -210,15 +183,14 @@ redirect_from:
     commands via <code>az</code>, so I print out the name of the subscription in my prompt:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="99-111"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="186-200"></code>
 
 <p>
-    One thing to note here is that I used <code>sed</code> for the string parsing, mostly because
-    I wrote this parser for Bash on Linux before I wrote it for PowerShell. There is no built-in
-    way to parse INI files (in either shell), so sed ends up filling this role. You'll need a
-    version of Gnu sed somewhere on your path; I pull mine from the Git for Windows installation
-    (by putting <code>...\usr\bin</code> folder on my PATH).
+    One thing to note here is that I borrowed some code from
+    <a href="https://www.dev4sys.com/2016/05/how-to-parse-ini-file-in-powershell.html">dev4sys</a> to parse the INI file:
 </p>
+
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="66,147"></code>
 
 <h3>
     Showing Git information
@@ -231,7 +203,7 @@ redirect_from:
     files, un-tracked files, etc.). All we need to do is print the info:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="113-118"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="202-207"></code>
 
 <h3>
     Showing current path
@@ -240,10 +212,10 @@ redirect_from:
 
 <p>The last element of the prompt is the current directory:</p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="120-127"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="209-214"></code>
 
 <p>
-    The location is normalized to replace your home folder with
+    The location is normalized to replace your home folder with a tilde, for shorter paths.
 </p>
 
 <h3>Printing directory stack depth</h3>
@@ -254,7 +226,7 @@ redirect_from:
     <code>Push-Location</code>, aka <code>pushd</code>):
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="132-136"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="219-223"></code>
 
 <h3>Conditional prompt text &amp; color</h3>
 
@@ -263,7 +235,7 @@ redirect_from:
     PowerShell Core.
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="141-162"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="228-250"></code>
 
 <p>
     There is a little bit of Windows vs. Unix-ism here to determine whether you're an admin. On Windows,
