@@ -82,6 +82,13 @@ a.social:hover {
 .fa {
   font-size: 25px;
 }
+h3 {
+  position: relative;
+}
+h3 .fa-paperclip {
+  position: absolute;
+  right: 0;
+}
 .left-nav {
   position: relative;
 }
