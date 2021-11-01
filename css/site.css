@@ -67,27 +67,25 @@ a.social:hover {
 .boxy:hover {
   background-color: #e0e0f0;
 }
-.boxy .fa {
+.boxy .svg-inline--fa {
   font-size: 80px;
 }
 .boxy:hover {
   background-color: #e0e0f0;
 }
-.boxy .fa {
-  font-size: 80px;
-}
 .boxy-wide {
   width: 250px;
 }
-.fa {
+.svg-inline--fa {
   font-size: 25px;
 }
 h3 {
   position: relative;
 }
-h3 .fa-paperclip {
+h3 .fa-link {
   position: absolute;
   right: 0;
+  font-size: 80%;
 }
 .left-nav {
   position: relative;
@@ -203,7 +201,7 @@ img.frame {
   h3, .h3 {
     font-size: 18px;
   }
-  .fa {
+  .svg-inline--fa {
     font-size: 18px;
   }
   .navbar-text {
