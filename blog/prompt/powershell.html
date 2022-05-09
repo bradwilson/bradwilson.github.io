@@ -7,7 +7,7 @@ redirect_from:
 
 <h1>Anatomy of a Prompt (PowerShell)</h1>
 <div>First posted: 20 August 2017</div>
-<div>Last updated: 21 February 2021</div>
+<div>Last updated: 8 May 2022</div>
 
 <h2>Table of Contents</h2>
 
@@ -25,6 +25,11 @@ redirect_from:
 <h2 id="history">History</h2>
 
 <ul>
+    <li>
+        <strong>8 May 2022</strong>: Add Rust and Go to the prompt, and make
+        Rust/Go/.NET conditional based on current folder. Updated to new style
+        with diagonal bars.
+    </li>
     <li>
         <strong>21 February 2021</strong>: Added .NET SDK to the prompt, updated
         scripts to latest. Using high DPI images.
@@ -49,9 +54,9 @@ redirect_from:
     Over the years, I've customized my prompt to maximize the information available to me while
     doing software development. Today it looks like this:
 </p>
-<p><img class="border" src="/images/prompt/powershell/terminal-dark.png" alt="Windows Terminal (dark)" width="1000" /></p>
+<p><img class="border" src="/images/prompt/powershell/terminal-dark.png" alt="Windows Terminal (dark)" width="1100" /></p>
 <p>I also have a light variant:</p>
-<p><img class="border" src="/images/prompt/powershell/terminal-light.png" alt="Windows Terminal (dark)" width="1000" /></p>
+<p><img class="border" src="/images/prompt/powershell/terminal-light.png" alt="Windows Terminal (light)" width="1100" /></p>
 <p>
     There's a lot going on in the screenshots, so I'm going to put together the pieces. The
     information here assumes you have general familiarity with customizing your PowerShell
@@ -82,17 +87,17 @@ redirect_from:
     The prompt uses several special characters that are not part of a standard font (for example,
     the Git branch symbol in the posh-git banner). The prompt assumes that you have installed and
     are using one the <a href="https://www.nerdfonts.com/">Nerd Fonts</a>; the screenshots shown
-    here are done with the <a href="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/JetBrainsMono.zip">JetBrainsMono Nerd Font</a>.
+    here are done with the <a href="https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Iosevka.zip">Iosevka Nerd Font</a>.
 </p>
 
-<p><img class="border" style="padding: 8px; background-color: #2e3436" src="https://www.nerdfonts.com/assets/img/previews/JetBrainsMono Nerd Font.svg" /></p>
+<p><img class="border" style="padding: 8px; background-color: #2e3436" src="https://www.nerdfonts.com/assets/img/previews/Iosevka Nerd Font.svg" /></p>
 
 <p>
     The Windows Terminal application uses a configuration file. Hit "ctrl comma", and it will launch
     a text editor for you to edit the configuration file. This is the dark and light theme:
 </p>
 
-<code class="transparent" data-gist-id="3b81a192a63056e310e453bc7f4c063d" data-gist-file="profiles.json" data-gist-line="39-88"></code>
+<code class="transparent" data-gist-id="3b81a192a63056e310e453bc7f4c063d" data-gist-file="settings.json" data-gist-line="68-116"></code>
 
 <p>
     The full files (including the Ubuntu icon file that I use) are available here:
@@ -109,21 +114,21 @@ redirect_from:
     of flexibility when formatting the prompt output. Here is what it looks like by
     default:
 </p>
-<p><img class="border" src="/images/prompt/powershell/default-poshgit.png" alt="Default posh-git Prompt" width="450" /></p>
+<p><img class="border" src="/images/prompt/powershell/default-poshgit.png" alt="Default posh-git Prompt" width="662" /></p>
 <p>
     You configure the prompt by overriding the default values in a configuration object
     that posh-git sets. Here are the overrides which convert that default prompt into
     the blue prompt you've seen above:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="3-62"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="3-63"></code>
 
 <p>
     To use these overrides, place these lines after the <code>Import-Module</code> statement that
     posh-git added to your PowerShell profile. Once you restart your shell, you should see your new
     customizations in place (don't worry about the path; we'll be re-styling that later on):
 </p>
-<p><img class="border" src="/images/prompt/powershell/override-poshgit.png" alt="posh-git Customized Prompt" width="450" /></p>
+<p><img class="border" src="/images/prompt/powershell/override-poshgit.png" alt="posh-git Customized Prompt" width="584" /></p>
 <p>
     If you want to customize the symbols used in the prompt, the easiest way to find them is by
     using the Character Map application built into Windows. Just select the Nerd Font you're using
@@ -139,7 +144,16 @@ redirect_from:
     prompt with our custom prompt (I'll break down each meaningful section afterward):
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="151,265"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="174,303"></code>
+
+<p>
+    The <code>findHereOrParent</code> function is used in a few of the prompt pieces (printing the versions of Go, Rust,
+    and the .NET SDK) so that the prompt piece will only be shown when you're in a folder of a project that uses the specific
+    language. The function itself is fairly straight forward: it looks for any of the given file paths (which supports
+    wildcards) in the current folder or any of the parent folders:
+</p>
+
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="151-170"></code>
 
 <p>Let's break this down into the individual parts of the prompt.</p>
 
@@ -153,13 +167,17 @@ redirect_from:
     have occurred:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="158-168"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="183-199"></code>
 
 <p>
     There are two categories of errors that might happen in PowerShell: internal errors (for example,
-    you try to run a command that doesn't exit), and external errors (when you run an executable, and
+    you try to run a command that doesn't exist), and external errors (when you run an executable, and
     the return code is something other than zero). We have separate code for each kind. We reset the
     <code>$Error</code> array and the <code>$LASTEXITCODE</code> values here when we're done.
+    Additionally, we detect the "special" exit code of <code>-1073741510</code>
+    (<a href="https://www.tutorialspoint.com/batch_script/batch_script_return_code.htm">also known as
+    <code>0xC000013A</code></a>) which indicates that the user pressed Ctrl+C to forcefully terminate
+    the application.
 </p>
 
 <h3>
@@ -169,12 +187,38 @@ redirect_from:
 
 <p>Next you'll see us printing out custom prompt environments:</p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="170-173"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="201-204"></code>
 
 <p>
-    This is used by things like the <code>vs2019.ps1</code> script that we will discuss later. The
+    This is used by things like the <code>vs2022.ps1</code> script that we will discuss later. The
     assumption is that any text you place into <code>$PromptEnvironment</code> will be shown here.
 </p>
+
+<h3>
+    Showing the Go version
+    <img class="border prompt-piece" src="/images/prompt/powershell/piece-go.png" alt="Go version" height="24" />
+</h3>
+
+<p>
+    We print the version of Go that's being used, but only do so when in a folder with a Go project (this
+    is determined by calling <code>findHereOrParent go.mod</code>). The version is determined by calling
+    <code>go version</code> and parsing the result:
+</p>
+
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="206-210"></code>
+
+<h3>
+    Showing the Rust version
+    <img class="border prompt-piece" src="/images/prompt/powershell/piece-rust.png" alt="Rust version" height="24" />
+</h3>
+
+<p>
+    We print the version of Rust that's being used, but only do so when in a folder with a Go project (this
+    is determined by calling <code>findHereOrParent Cargo.toml</code>). The version is determined by calling
+    <code>rustc --version</code> and parsing the result:
+</p>
+
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="212-216"></code>
 
 <h3>
     Showing the .NET SDK version
@@ -182,21 +226,25 @@ redirect_from:
 </h3>
 
 <p>
-    When you have the .NET SDK installed, we can run <code>dotnet --version</code> to determine which version
-    of the SDK is currently in use. This will track changes to the SDK version via <code>global.json</code>,
-    falling back to the latest installed version when not overridden.
+    We print the version of the .NET SDK that's being used, but only do so when in a folder with a .NET project (this
+    is determined by calling <code>findHereOrParent *.sln,*.csproj</code>; if you use other language types like F#
+    or VB.NET, you can add those file types as well). The version is determined by calling <code>dotnet --version</code>;
+    this will track SDK versions via <code>global.json</code>, falling back to the latest installed version when not overridden.
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="175-179"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="218-222"></code>
 
 <h3>
     Showing the Kubernetes (kubectl) current context
     <img class="border prompt-piece" src="/images/prompt/powershell/piece-kubectl.png" alt="Kubernetes (kubectl) context" height="24" />
 </h3>
 
-<p>The gray box in my prompt shows your current kubectl context:</p>
+<p>
+    The gray box in my prompt shows your current kubectl context by calling
+    <code>kubectl config current-context</code>:
+</p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="181-190"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="224-233"></code>
 
 <h3>
     Showing Azure CLI current subscription
@@ -208,12 +256,12 @@ redirect_from:
     commands via <code>az</code>, so I print out the name of the subscription in my prompt:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="192-206"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="235-249"></code>
 
 <p>Two important notes:</p>
 <ul>
     <li>
-        This prompt function requires GNU sed to be somewhere on your PATH. It's typically shipped with
+        This prompt piece requires GNU sed to be somewhere on your PATH. It's typically shipped with
         Git for Windows (in <code>...\usr\bin</code>). You may or may not want this whole folder on your
         PATH; it contains nearly 300 executables as of the writing of this article, so you may instead
         want to set a PowerShell alias to point to that single executable.
@@ -224,7 +272,7 @@ redirect_from:
             <a href="https://www.dev4sys.com/2016/05/how-to-parse-ini-file-in-powershell.html">dev4sys</a>
             to parse the INI file:
         </p>
-        <code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="66,147"></code>
+        <code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="67,147"></code>
     </li>
 </ul>
 
@@ -239,7 +287,7 @@ redirect_from:
     files, un-tracked files, etc.). All we need to do is print the info:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="208-213"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="251-256"></code>
 
 <h3>
     Showing current path
@@ -248,7 +296,7 @@ redirect_from:
 
 <p>The last element of the prompt is the current directory:</p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="215-221"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="258-264"></code>
 
 <p>The location is normalized to replace your home folder with a tilde, for shorter paths.</p>
 
@@ -260,7 +308,7 @@ redirect_from:
     <code>Push-Location</code>, aka <code>pushd</code>):
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="226-230"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="269-275"></code>
 
 <h3>Conditional prompt text &amp; color</h3>
 
@@ -269,7 +317,7 @@ redirect_from:
     PowerShell Core.
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="235-257"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="277-299"></code>
 
 <p>
     There is a little bit of Windows vs. Unix-ism here to determine whether you're an admin. On Windows,
@@ -288,7 +336,7 @@ redirect_from:
 <p>
     The final piece of the puzzle is setting the prompt environment. I have several commands which
     place the shell into a special mode to be used for specific environments. For example, I have
-    a command called <code>vs2017</code> which adds Visual Studio environment variables just as
+    a command called <code>vs2022</code> which adds Visual Studio environment variables just as
     though you'd run the Visual Studio Command Prompt, and then adds that information to the
     printed prompt environment.
 </p>
@@ -297,17 +345,19 @@ redirect_from:
 
 <code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs.ps1"></code>
 
-And then I use a few simpler commands to invoke it:
+<p>And then I use a few simpler commands to invoke it:</p>
 
 <code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs2017.ps1"></code>
 <code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs2019.ps1"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vs2022.ps1"></code>
 <code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="vspreview.ps1"></code>
 
 <p>
     <code>vs.ps1</code> is a little complex because Visual Studio 2017+ now allows you to install multiple editions
     side by side. It looks to see which edition you have installed and uses the <code>VsDevCmd.bat</code>
     to get the updated environment variables. If you have multiple editions installed, you can use
-    the <code>-edition</code> switch to specify which environment you want.
+    the <code>-edition</code> switch to specify which environment you want. In addition, Visual Studio 2022+
+    is now 64-bit, so we are forced to look in both 32- and 64-bit Program Files.
 </p>
 <p>
     The final line of the script sets the global <code>PromptEnvironment</code> variable, which we use
@@ -318,7 +368,7 @@ And then I use a few simpler commands to invoke it:
 
 <p>
     You can download <code>profile.ps1</code> and <code>vs.ps1</code> (and friends) from my
-    <a href="https://gist.github.com/bradwilson/d965fa17fd3b3eee168270122e0f7da4#file-vs2017-ps1">GitHub gist</a>.
+    <a href="https://gist.github.com/bradwilson/d965fa17fd3b3eee168270122e0f7da4">GitHub gist</a>.
 </p>
 
 <h2 id="conclusion">Conclusion</h2>
@@ -329,13 +379,5 @@ And then I use a few simpler commands to invoke it:
     quickly glanceable can be very handy when spending significant time in your command window
     of choice.
 </p>
-
-<p>
-    Here is the prompt from Ubuntu 18.04 running inside of
-    <a href="https://docs.microsoft.com/en-us/windows/wsl/about">Windows Subsystem for Linux</a> v2.
-    It also works on native Linux and macOS machines with PowerShell Core installed.
-</p>
-
-<p><img class="border" src="/images/prompt/powershell/pwsh-linux.png" alt="PowerShell Core on Linux" width="1000" /></p>
 
 <p>Happy hacking!</p>
