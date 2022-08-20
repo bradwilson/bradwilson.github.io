@@ -7,7 +7,7 @@ redirect_from:
 
 <h1>Anatomy of a Prompt (PowerShell)</h1>
 <div>First posted: 20 August 2017</div>
-<div>Last updated: 8 May 2022</div>
+<div>Last updated: 20 August 2022</div>
 
 <h2>Table of Contents</h2>
 
@@ -25,6 +25,11 @@ redirect_from:
 <h2 id="history">History</h2>
 
 <ul>
+    <li>
+        <strong>20 August 2022</strong>: Add try/catch in <code>findHereOrParent</code>
+        because some filesystem providers (like the registry provider) don't support
+        the use of <code>-Filter</code> on <code>Get-ChildItem</code>, which will throw.
+    </li>
     <li>
         <strong>8 May 2022</strong>: Add Rust and Go to the prompt, and make
         Rust/Go/.NET conditional based on current folder. Updated to new style
@@ -144,7 +149,7 @@ redirect_from:
     prompt with our custom prompt (I'll break down each meaningful section afterward):
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="174,303"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-lines-expanded="true" data-gist-line="179,308"></code>
 
 <p>
     The <code>findHereOrParent</code> function is used in a few of the prompt pieces (printing the versions of Go, Rust,
@@ -153,7 +158,12 @@ redirect_from:
     wildcards) in the current folder or any of the parent folders:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="151-170"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="151-175"></code>
+
+<p>
+    The try/catch here is because some filesystem providers may throw errors when running <code>Get-ChildItem</code> (for example,
+    the registry provider does not support the use of <code>-Filter</code>). We catch and swallow the error so that it's not shown.
+</p>
 
 <p>Let's break this down into the individual parts of the prompt.</p>
 
@@ -167,7 +177,7 @@ redirect_from:
     have occurred:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="183-199"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="188-204"></code>
 
 <p>
     There are two categories of errors that might happen in PowerShell: internal errors (for example,
@@ -187,7 +197,7 @@ redirect_from:
 
 <p>Next you'll see us printing out custom prompt environments:</p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="201-204"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="206-209"></code>
 
 <p>
     This is used by things like the <code>vs2022.ps1</code> script that we will discuss later. The
@@ -205,7 +215,7 @@ redirect_from:
     <code>go version</code> and parsing the result:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="206-210"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="211-215"></code>
 
 <h3>
     Showing the Rust version
@@ -218,7 +228,7 @@ redirect_from:
     <code>rustc --version</code> and parsing the result:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="212-216"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="217-221"></code>
 
 <h3>
     Showing the .NET SDK version
@@ -232,7 +242,7 @@ redirect_from:
     this will track SDK versions via <code>global.json</code>, falling back to the latest installed version when not overridden.
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="218-222"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="223-227"></code>
 
 <h3>
     Showing the Kubernetes (kubectl) current context
@@ -244,7 +254,7 @@ redirect_from:
     <code>kubectl config current-context</code>:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="224-233"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="229-238"></code>
 
 <h3>
     Showing Azure CLI current subscription
@@ -256,7 +266,7 @@ redirect_from:
     commands via <code>az</code>, so I print out the name of the subscription in my prompt:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="235-249"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="240-254"></code>
 
 <p>Two important notes:</p>
 <ul>
@@ -287,7 +297,7 @@ redirect_from:
     files, un-tracked files, etc.). All we need to do is print the info:
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="251-256"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="256-261"></code>
 
 <h3>
     Showing current path
@@ -296,7 +306,7 @@ redirect_from:
 
 <p>The last element of the prompt is the current directory:</p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="258-264"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="263-269"></code>
 
 <p>The location is normalized to replace your home folder with a tilde, for shorter paths.</p>
 
@@ -308,7 +318,7 @@ redirect_from:
     <code>Push-Location</code>, aka <code>pushd</code>):
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="269-275"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="274-280"></code>
 
 <h3>Conditional prompt text &amp; color</h3>
 
@@ -317,7 +327,7 @@ redirect_from:
     PowerShell Core.
 </p>
 
-<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="277-299"></code>
+<code class="transparent" data-gist-id="d965fa17fd3b3eee168270122e0f7da4" data-gist-file="profile.ps1" data-gist-line="282-304"></code>
 
 <p>
     There is a little bit of Windows vs. Unix-ism here to determine whether you're an admin. On Windows,
