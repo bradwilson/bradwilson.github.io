@@ -176,10 +176,18 @@ code.transparent {
 img.frame {
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  height: 140px;
   margin-right: 5px;
   margin-bottom: 5px;
   padding: 5px;
+}
+img.homepage {
+  height: 140px;
+}
+img.album {
+  float: right;
+  margin: 0 0 10px 10px;
+  width: 200px;
+  height: 200px;
 }
 
 /* Media queries */
@@ -188,6 +196,10 @@ img.frame {
   iframe.youtube {
     width: 370px;
     height: 208px;
+  }
+  img.album {
+    width: 130px;
+    height: 130px;
   }
 }
 
@@ -213,5 +225,9 @@ img.frame {
   iframe.youtube {
     width: 280px;
     height: 157px;
+  }
+  img.album {
+    width: 100px;
+    height: 100px;
   }
 }
