@@ -17,8 +17,8 @@ function GuardBin {
 
 GuardBin git "please install the Git CLI from https://git-scm.com/"
 GuardBin dotnet "please install the .NET SDK from https://dot.net/"
-GuardBin ruby "please install Ruby 2.7.4 (https://www.ruby-lang.org/en/downloads/)"
-GuardBin bundle "please install Bundler 2.1.4 (gem install bundler --version 2.1.4)"
+GuardBin ruby "please install Ruby 3.3.0 (https://www.ruby-lang.org/en/downloads/)"
+GuardBin bundle "please install Bundler 2.5.3 (gem install bundler --version 2.5.3)"
 
 $version = [Version]$([regex]::matches((&dotnet --version), '^(\d+\.)?(\d+\.)?(\*|\d+)').value)
 if ($version.Major -lt 8) {

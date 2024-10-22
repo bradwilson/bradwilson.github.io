@@ -12,7 +12,7 @@ using OperatingSystem = System.OperatingSystem;
 
 namespace Xunit.BuildTools.Models;
 
-[Command(Name = "build", Description = "Build utility for xUnit.net web site")]
+[Command(Name = "build", Description = "Build utility")]
 [HelpOption("-?|-h|--help")]
 public partial class BuildContext
 {
