@@ -4,47 +4,49 @@ https://keybase.io/bradwilson72
 
 I hereby claim:
 
-  * I am an admin of http://bradwilson.io
+  * I am an admin of https://bradwilson.dev
   * I am bradwilson72 (https://keybase.io/bradwilson72) on keybase.
-  * I have a public key ASAW1h5cq8YOKoz2uSp0bB8qje8scVkjD5riQgNEnn614Qo
+  * I have a public key ASDM8gJ5sSFnO0TdNYBFgvDKo9Oic7_dJKK2pS__wYG94Qo
 
 To do so, I am signing this object:
 
 {
-    "body": {
-        "key": {
-            "eldest_kid": "012016d61e5cabc60e2a8cf6b92a746c1f2a8def2c7159230f9ae24203449e7eb5e10a",
-            "host": "keybase.io",
-            "kid": "012016d61e5cabc60e2a8cf6b92a746c1f2a8def2c7159230f9ae24203449e7eb5e10a",
-            "uid": "55d62574b3295918f9f9545ea44b7619",
-            "username": "bradwilson72"
-        },
-        "service": {
-            "hostname": "bradwilson.io",
-            "protocol": "http:"
-        },
-        "type": "web_service_binding",
-        "version": 1
+  "body": {
+    "key": {
+      "eldest_kid": "012016d61e5cabc60e2a8cf6b92a746c1f2a8def2c7159230f9ae24203449e7eb5e10a",
+      "host": "keybase.io",
+      "kid": "0120ccf20279b121673b44dd35804582f0caa3d3a273bfdd24a2b6a52fffc181bde10a",
+      "uid": "55d62574b3295918f9f9545ea44b7619",
+      "username": "bradwilson72"
     },
-    "client": {
-        "name": "keybase.io go client",
-        "version": "1.0.18"
-    },
-    "ctime": 1487653255,
-    "expire_in": 504576000,
     "merkle_root": {
-        "ctime": 1487653190,
-        "hash": "31b34a4b2c2fe4da542c818b655ea2d82f251315bd4484b10ed8256e2b31787f1e6d713d1ea6b9250a7c719fa2c1096b58843e5ec97992c9c99137924c00d0bd",
-        "seqno": 909415
+      "ctime": 1729722687,
+      "hash": "2a3d69bd575d92674632d57a5566efc0de65a5a41fd8bebe669a13b6d02b51e19e72f0cd1b123bd4bc2f5008058068d37257a0fbd14a9cd114af8037813e6e1e",
+      "hash_meta": "2cfbd4d1007762f863d47d474e7de5fe7dea27bc3e065599076b060668b83b9c",
+      "seqno": 26236151
     },
-    "prev": "2e6c0cace3024a98b0c46a76151b544b55c31529dd9d8a2aafa1e426b9d4a349",
-    "seqno": 8,
-    "tag": "signature"
+    "service": {
+      "entropy": "MN94FE4recNE0EyIBNvxMNJm",
+      "hostname": "bradwilson.dev",
+      "protocol": "https:"
+    },
+    "type": "web_service_binding",
+    "version": 2
+  },
+  "client": {
+    "name": "keybase.io go client",
+    "version": "6.4.0"
+  },
+  "ctime": 1729722716,
+  "expire_in": 504576000,
+  "prev": "96709100eae1e122d83e5f6acd9d62d2870ed987a724efcc2bd45bb79dedc43b",
+  "seqno": 62,
+  "tag": "signature"
 }
 
 which yields the signature:
 
-hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgFtYeXKvGDiqM9rkqdGwfKo3vLHFZIw+a4kIDRJ5+teEKp3BheWxvYWTFAvh7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTIwMTZkNjFlNWNhYmM2MGUyYThjZjZiOTJhNzQ2YzFmMmE4ZGVmMmM3MTU5MjMwZjlhZTI0MjAzNDQ5ZTdlYjVlMTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwMTZkNjFlNWNhYmM2MGUyYThjZjZiOTJhNzQ2YzFmMmE4ZGVmMmM3MTU5MjMwZjlhZTI0MjAzNDQ5ZTdlYjVlMTBhIiwidWlkIjoiNTVkNjI1NzRiMzI5NTkxOGY5Zjk1NDVlYTQ0Yjc2MTkiLCJ1c2VybmFtZSI6ImJyYWR3aWxzb243MiJ9LCJzZXJ2aWNlIjp7Imhvc3RuYW1lIjoiYnJhZHdpbHNvbi5pbyIsInByb3RvY29sIjoiaHR0cDoifSwidHlwZSI6IndlYl9zZXJ2aWNlX2JpbmRpbmciLCJ2ZXJzaW9uIjoxfSwiY2xpZW50Ijp7Im5hbWUiOiJrZXliYXNlLmlvIGdvIGNsaWVudCIsInZlcnNpb24iOiIxLjAuMTgifSwiY3RpbWUiOjE0ODc2NTMyNTUsImV4cGlyZV9pbiI6NTA0NTc2MDAwLCJtZXJrbGVfcm9vdCI6eyJjdGltZSI6MTQ4NzY1MzE5MCwiaGFzaCI6IjMxYjM0YTRiMmMyZmU0ZGE1NDJjODE4YjY1NWVhMmQ4MmYyNTEzMTViZDQ0ODRiMTBlZDgyNTZlMmIzMTc4N2YxZTZkNzEzZDFlYTZiOTI1MGE3YzcxOWZhMmMxMDk2YjU4ODQzZTVlYzk3OTkyYzljOTkxMzc5MjRjMDBkMGJkIiwic2Vxbm8iOjkwOTQxNX0sInByZXYiOiIyZTZjMGNhY2UzMDI0YTk4YjBjNDZhNzYxNTFiNTQ0YjU1YzMxNTI5ZGQ5ZDhhMmFhZmExZTQyNmI5ZDRhMzQ5Iiwic2Vxbm8iOjgsInRhZyI6InNpZ25hdHVyZSJ9o3NpZ8RANBduJa3MA9EKBfdrevrHA4pwAB0m4CbHQoQ8UPYWu7YaETtVz8GWlh/jWnH4NpmSkTU+xbxiYmXxl7jRAmlKBKhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIIzDo6qQcKEJ/keHfZN03+EwzE4wY1FU2qiSODn2eLkUo3RhZ80CAqd2ZXJzaW9uAQ==
+hKRib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgzPICebEhZztE3TWARYLwyqPTonO/3SSitqUv/8GBveEKp3BheWxvYWTESpcCPsQglnCRAOrh4SLYPl9qzZ1i0ocO2YenJO/MK9Rbt53txDvEINIj3bTIrHpWViXWA9ExZvpCdZ9k/VEiz7DsZ8nlQj8iAgHCo3NpZ8RAF330x7BQGesU7RrGmGHzfmMEp0rKtpSJ7X6Oa5GhASWILUAFVqz4WX3cpJyIFx30O7lPONpFtl1jVk7WYvhcBqhzaWdfdHlwZSCkaGFzaIKkdHlwZQildmFsdWXEIGvI4unpSy+lVxdHN0MDv4l5OB7MHs7rEyDFfdTLw1Ygo3RhZ80CAqd2ZXJzaW9uAQ==
 
 And finally, I am proving ownership of this host by posting or
 appending to this document.
